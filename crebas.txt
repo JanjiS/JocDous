@@ -1,0 +1,63 @@
+--------------------------------------------------------
+--  DDL for Sequence S_IDPARTIDA
+--------------------------------------------------------
+
+   CREATE SEQUENCE  S_IDPARTIDA  MINVALUE 1 MAXVALUE 9999 INCREMENT BY 1 START WITH 1 CACHE 20 NOORDER  NOCYCLE ;
+--------------------------------------------------------
+--  DDL for Table JUGADOR
+--------------------------------------------------------
+
+  CREATE TABLE JUGADOR (NOM VARCHAR2(25)) ;
+--------------------------------------------------------
+--  DDL for Table PARTIDA
+--------------------------------------------------------
+
+  CREATE TABLE PARTIDA (NOM VARCHAR2(25), DAU1 NUMBER(1,0), DAU2 NUMBER(1,0), IDPARTIDA NUMBER(5,0)) ;
+--------------------------------------------------------
+--  DDL for Index PK_PARTIDA
+--------------------------------------------------------
+
+  CREATE UNIQUE INDEX PK_PARTIDA ON PARTIDA (IDPARTIDA) ;
+--------------------------------------------------------
+--  DDL for Index PK_JUGADOR
+--------------------------------------------------------
+
+  CREATE UNIQUE INDEX PK_JUGADOR ON JUGADOR (NOM) ;
+---------------------------------------------------------
+--  Constraints for Table PARTIDA
+--------------------------------------------------------
+
+  ALTER TABLE PARTIDA ADD CONSTRAINT PK_PARTIDA PRIMARY KEY (IDPARTIDA) ENABLE;
+ 
+  ALTER TABLE PARTIDA MODIFY (IDPARTIDA NOT NULL ENABLE);
+ 
+  ALTER TABLE PARTIDA MODIFY (NOM NOT NULL ENABLE);
+
+  ALTER TABLE PARTIDA MODIFY (DAU1 NOT NULL ENABLE); 
+
+  ALTER TABLE PARTIDA MODIFY (DAU2 NOT NULL ENABLE);
+--------------------------------------------------------
+--  Constraints for Table JUGADOR
+--------------------------------------------------------
+
+  ALTER TABLE JUGADOR ADD CONSTRAINT PK_JUGADOR PRIMARY KEY (NOM) ENABLE;
+ 
+  ALTER TABLE JUGADOR MODIFY (NOM NOT NULL ENABLE);
+---------------------------------------------------------
+--  Ref Constraints for Table PARTIDA
+--------------------------------------------------------
+
+  ALTER TABLE PARTIDA ADD CONSTRAINT FK_PARTIDA_RELATIONS_JUGADOR FOREIGN KEY (NOM) REFERENCES JUGADOR (NOM) ENABLE;
+--------------------------------------------------------
+--  DDL for Trigger INSERIR_ID_PARTIDA
+--------------------------------------------------------
+
+ -- CREATE OR REPLACE TRIGGER INSERIR_ID_PARTIDA 
+--BEFORE INSERT ON PARTIDA 
+--FOR EACH ROW 
+--BEGIN
+--  SELECT s_idPartida.NEXTVAL INTO :NEW.IDPARTIDA 
+--	FROM DUAL;
+--END;
+--/
+--ALTER TRIGGER INSERIR_ID_PARTIDA ENABLE;
