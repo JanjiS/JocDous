@@ -6,17 +6,14 @@ import java.util.List;
 public class Jugador {
 
     private String nom;
-    private Partida darreraPartida;
+    private Partida darreraPartida; 
     private ArrayList<Partida> partides;
-    private int guanyades = 0;
-     private int numPartidesPersistents;
+    private int numPartidesPersistents;
 
 
     public Jugador(String nom) {
         this.nom = nom;
-        guanyades = 0;
         partides = new ArrayList<Partida>();
-
     }
 
     public String getNom() {
@@ -27,22 +24,13 @@ public class Jugador {
         this.nom = nom;
     }
 
-    public String resultatPartides() {
-        String resultat = "";
-        for (Partida p : partides) {
-            resultat += p + "\n";
-        }
-        return resultat;
-    }
-
     public void addPartida(int dau1, int dau2) {
         darreraPartida = new Partida(dau1, dau2);
         this.desarDarreraPartida();
-        this.actualitzarGuanyades();
     }
 
-    public String resultatPartidaEnCurs() {
-        return darreraPartida.toString();
+    public Partida getPartidaEnCurs() {
+        return darreraPartida;
     }
 
     public boolean guanyadaDarreraPartida() {
@@ -54,15 +42,15 @@ public class Jugador {
     }
 
     public int nombreGuanyades() {
-        return guanyades;
+    	int i=0;
+    	for(Partida p:partides){
+    		if(p.getGuanyada()) i++;
+    	}
+        return i;
     }
 
     private void desarDarreraPartida() {
         partides.add(darreraPartida);
-    }
-
-    private void actualitzarGuanyades() {
-        guanyades += darreraPartida.getGuanyada() ? 1 : 0;
     }
 
     public List<Partida> getPartides() {

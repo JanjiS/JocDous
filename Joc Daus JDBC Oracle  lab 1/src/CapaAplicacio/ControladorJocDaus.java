@@ -1,7 +1,13 @@
 package CapaAplicacio;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import CapaAplicacio.DTO.JugadorDTO;
+import CapaAplicacio.DTO.PartidaDTO;
 import CapaDomini.Dau;
 import CapaDomini.Jugador;
+import CapaDomini.Partida;
 
 public class ControladorJocDaus {
 
@@ -30,8 +36,12 @@ public class ControladorJocDaus {
         return jugador.getNom();
     }
 
-    public String resultatPartidaEnCurs() {
-        return jugador.resultatPartidaEnCurs();
+    public PartidaDTO resultatPartidaEnCurs() {
+        return new PartidaDTO(jugador.getPartidaEnCurs());
+    }
+    
+    public JugadorDTO getJugadorDTO(){
+    	return new JugadorDTO(jugador);
     }
 
     public double guanyadesPercent() {
@@ -45,7 +55,14 @@ public class ControladorJocDaus {
         }
     }
 
-    public String resultatPartides() {
-        return jugador.resultatPartides();
+    public List<PartidaDTO> getPartides() {
+        List<Partida> partides = jugador.getPartides();
+        
+        List<PartidaDTO> result = new ArrayList<>();
+        
+        for(Partida p:partides){
+        	result.add(new PartidaDTO(p));
+        }
+        return result;
     }   	
 }
