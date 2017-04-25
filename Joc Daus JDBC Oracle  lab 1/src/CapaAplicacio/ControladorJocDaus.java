@@ -36,7 +36,7 @@ public class ControladorJocDaus {
         return jugador.getNom();
     }
 
-    public PartidaDTO resultatPartidaEnCurs() {
+    public PartidaDTO getPartidaEnCurs() {
         return new PartidaDTO(jugador.getPartidaEnCurs());
     }
     
@@ -55,13 +55,13 @@ public class ControladorJocDaus {
         }
     }
 
-    public List<PartidaDTO> getPartides() {
+    public String getPartides() {
         List<Partida> partides = jugador.getPartides();
         
-        List<PartidaDTO> result = new ArrayList<>();
+        String result = "";
         
         for(Partida p:partides){
-        	result.add(new PartidaDTO(p));
+        	result+=new PartidaDTO(p).getResultat();
         }
         return result;
     }   	

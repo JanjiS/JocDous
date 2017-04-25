@@ -5,6 +5,7 @@ import java.awt.EventQueue;
 import javax.swing.JOptionPane;
 
 import CapaAplicacio.ControladorJocDaus;
+import CapaAplicacio.DTO.PartidaDTO;
 
 public class PantallaJocDaus extends javax.swing.JFrame {
 
@@ -167,12 +168,12 @@ public class PantallaJocDaus extends javax.swing.JFrame {
         getContentPane().add(jScrollPane1);
     }
     private void jugarActionPerformed(java.awt.event.ActionEvent evt) {
-        String jugada;
+        PartidaDTO partida;
         controladorJocDaus.jugar();
-        jugada = controladorJocDaus.resultatPartidaEnCurs();
-        dau1.setText(jugada.substring(6, 7));
-        dau2.setText(jugada.substring(15, 16));
-        resultat.setText(jugada.substring(27));
+        partida = controladorJocDaus.getPartidaEnCurs();
+        dau1.setText(partida.getDau1());
+        dau2.setText(partida.getDau2());
+        resultat.setText(partida.getResultat());
         String s = String.format("%3.2f", controladorJocDaus.guanyadesPercent());
         guanyades.setText(s);
 
@@ -192,7 +193,7 @@ public class PantallaJocDaus extends javax.swing.JFrame {
 
     private void llistaJugadesActionPerformed(java.awt.event.ActionEvent evt) {
         String jugades;
-        jugades = controladorJocDaus.resultatPartides();
+        jugades = controladorJocDaus.getPartides();
         jugadesLlista.setText(jugades);
     }
 }
