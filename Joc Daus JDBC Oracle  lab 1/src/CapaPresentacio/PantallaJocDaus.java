@@ -193,7 +193,7 @@ public class PantallaJocDaus extends javax.swing.JFrame {
 
     private void llistaJugadesActionPerformed(java.awt.event.ActionEvent evt) {
         String jugades;
-        jugades = controladorJocDaus.getPartides();
+        jugades = controladorJocDaus.getPartides(); //TODO: pasar les partides a un String amb un for()
         jugadesLlista.setText(jugades);
     }
 }
