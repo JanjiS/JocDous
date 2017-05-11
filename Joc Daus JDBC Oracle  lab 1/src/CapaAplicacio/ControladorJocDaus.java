@@ -17,7 +17,6 @@ public class ControladorJocDaus {
     private final int CARES_DAUS = 6;
     private Jugador jugador;
     private Partida partidaActual;
-    private PartidaBBDD partidaBBDD;
     
     public ControladorJocDaus() {
         dau1 = new Dau(CARES_DAUS);
@@ -30,7 +29,7 @@ public class ControladorJocDaus {
         int tirada2 = this.tirarDau(dau2);
         partidaActual = new Partida(tirada1, tirada2);
         try {
-			partidaBBDD.storePartida(partidaActual, jugador);
+			PartidaBBDD.storePartida(partidaActual, jugador);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

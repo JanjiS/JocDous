@@ -39,31 +39,30 @@ public class PartidaBBDD {
 		}
 	}
 	
-	public void storePartida (Partida partida, Jugador jugador) throws Exception{
+	public static void storePartida (Partida partida, Jugador jugador) throws Exception{
 		
 		ConnectionBBDD connection = LoginBBDD.getConnection();
-		try{
-			
-		
-		String sql="INSERT INTO JUGADOR VALUES(?,?,?,?)";
-		String sql2="SELECT NEXT VALUE FOR S_IDPARTIDA";
-		PreparedStatement pst = connection.prepareStatement(sql);
-		PreparedStatement pst2 = connection.prepareStatement(sql2);
-		ResultSet rs = pst2.executeQuery();
-		int val = ((Number) rs.getObject(1)).intValue();
-		
-		pst.setString(1, jugador.getNom());
-		pst.setInt(2, partida.getDau1());
-		pst.setInt(3, partida.getDau2());
-		pst.setInt(4, val);
-		
-		
-		if (pst.executeUpdate() !=1){
-			throw new Exception ("Partida no guardada");
-		}
-			
-		} catch (SQLException e){
-			throw new Exception ("Error al inserir la partida");
+		try {
+
+			String sql = "INSERT INTO PARTIDA VALUES(?,?,?,?)";
+			String sql2 = "SELECT S_IDPARTIDA.nextval FROM DUAL";
+			PreparedStatement pst = connection.prepareStatement(sql);
+			PreparedStatement pst2 = connection.prepareStatement(sql2);
+			ResultSet rs = pst2.executeQuery();
+			int val = 0;
+			while (rs.next()) {
+				val = rs.getInt(1);
+			}
+			pst.setString(1, jugador.getNom());
+			pst.setInt(2, partida.getDau1());
+			pst.setInt(3, partida.getDau2());
+			pst.setInt(4, val);
+
+			if (pst.executeUpdate() != 1) {
+				throw new Exception("Partida no guardada");
+			}
+		} catch (SQLException e) {
+			throw new Exception("Error al inserir la partida");
 		}
 	}
 }
