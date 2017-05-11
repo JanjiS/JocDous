@@ -26,19 +26,6 @@ public class PantallaJocDaus extends javax.swing.JFrame {
     private javax.swing.JTextField resultat;
     private javax.swing.JTextField textJugador;
     
-    public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					PantallaJocDaus frame = new PantallaJocDaus();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
     public PantallaJocDaus() {
         initComponents();
         this.controladorJocDaus = new ControladorJocDaus ();
@@ -88,7 +75,7 @@ public class PantallaJocDaus extends javax.swing.JFrame {
         jLabel1.setText("Nom Jugador:");
 
         textJugador.setFont(new java.awt.Font("Tahoma", 0, 14));
-        textJugador.setText("Anònim");
+        textJugador.setText("Anonim");
         textJugador.setName("nomJugador");
         textJugador.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -170,7 +157,7 @@ public class PantallaJocDaus extends javax.swing.JFrame {
     private void jugarActionPerformed(java.awt.event.ActionEvent evt) {
         PartidaDTO partida;
         controladorJocDaus.jugar();
-        partida = controladorJocDaus.getPartidaEnCurs();
+        partida = controladorJocDaus.PartidaEnCurs();
         dau1.setText(partida.getDau1());
         dau2.setText(partida.getDau2());
         resultat.setText(partida.getResultat());
@@ -192,8 +179,12 @@ public class PantallaJocDaus extends javax.swing.JFrame {
     }
 
     private void llistaJugadesActionPerformed(java.awt.event.ActionEvent evt) {
-        String jugades;
-        jugades = controladorJocDaus.getPartides(); //TODO: pasar les partides a un String amb un for()
-        jugadesLlista.setText(jugades);
+    	try {
+			String jugades = controladorJocDaus.getPartides();
+			jugadesLlista.setText(jugades);
+		} catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage(),
+                    "Error lectura BBDD", JOptionPane.ERROR_MESSAGE);
+        }
     }
 }

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="Joc Daus JDBC Oracle  lab 1/src"/>
+	<classpathentry kind="lib" path="ojdbc14-1.0.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="output" path="Joc Daus JDBC Oracle  lab 1/bin"/>
+</classpath>
