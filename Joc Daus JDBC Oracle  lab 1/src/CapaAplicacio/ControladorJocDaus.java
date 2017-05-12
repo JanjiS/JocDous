@@ -31,10 +31,8 @@ public class ControladorJocDaus {
         try {
 			PartidaBBDD.storePartida(partidaActual, jugador);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-        jugador.addPartida(tirada1, tirada2);
     }
 
     private int tirarDau(Dau dau) {
@@ -54,8 +52,12 @@ public class ControladorJocDaus {
     	return new JugadorDTO(jugador);
     }
 
-    public double guanyadesPercent() {
-        return jugador.nombreGuanyades() / (float) jugador.nombrePartides() * 100;
+    public double guanyadesPercent() throws Exception {
+    	int guanyades = 0;
+       	for (Partida p: PartidaBBDD.getPartides(jugador.getNom())) {
+			if(p.getGuanyada()) guanyades++;
+		}
+        return guanyades / (float) PartidaBBDD.getPartides(jugador.getNom()).size() * 100;
     }
 
     public void nouJugador(String nom) {
@@ -81,8 +83,10 @@ public class ControladorJocDaus {
         
         
         for(Partida p:partides){
-        	result+=new PartidaDTO(p).toString();
+        	result+=new PartidaDTO(p).getResultat()+"\n";
+        	System.out.println(result);
         }
+        System.out.println(result);
         return result;
     }   	
 }

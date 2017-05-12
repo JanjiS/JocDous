@@ -161,7 +161,12 @@ public class PantallaJocDaus extends javax.swing.JFrame {
         dau1.setText(partida.getDau1());
         dau2.setText(partida.getDau2());
         resultat.setText(partida.getResultat());
-        String s = String.format("%3.2f", controladorJocDaus.guanyadesPercent());
+        String s = "";
+		try {
+			s = String.format("%3.2f", controladorJocDaus.guanyadesPercent());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
         guanyades.setText(s);
 
     }

@@ -28,12 +28,9 @@ public class PartidaBBDD {
 			List<Partida> partides = new ArrayList<Partida>();
 			
 			while (rs.next()) {
-				partides.add((Partida) rs); //TODO MMMH
-				return partides;
+				partides.add(new Partida(rs.getInt(2),rs.getInt(3)));
 			}
-			
-			System.out.println("Partides no trobades");
-			throw new Exception ("No sha trobat les partides");
+			return partides;
 		} catch (SQLException e) {
 			throw new Exception ("Error al agafar les partides", e);
 		}
