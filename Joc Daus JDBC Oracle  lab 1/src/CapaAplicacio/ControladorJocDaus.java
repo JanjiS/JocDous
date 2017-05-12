@@ -1,6 +1,5 @@
 package CapaAplicacio;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import CapaAplicacio.DTO.JugadorDTO;

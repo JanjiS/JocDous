@@ -12,8 +12,6 @@ import CapaPersistencia.ConnectionBBDD;
 import CapaPersistencia.LoginBBDD;
 
 public class PartidaBBDD {
-	private static Partida partida;
-	
 	public static List<Partida> getPartides(String nom) throws Exception{
 		ConnectionBBDD connection= LoginBBDD.getConnection();
 		
